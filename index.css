@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Arial", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-family: 'Arial', 'IBM Plex Sans', sans-serif;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+@layer components {
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  
+  .spinner {
+    border: 3px solid rgba(0, 102, 204, 0.1);
+    border-left-color: #0066CC;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+  }
+
+  .cert-table { width: 100%; border-collapse: collapse; }
+  .cert-table td {
+    border: 1px solid #000;
+    padding: 4px 8px;
+    vertical-align: top;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  .cert-label { font-weight: bold; display: block; margin-bottom: 2px; }
+  .cert-value { font-size: 12px; }
+  .num-box { font-weight: bold; font-size: 14px; padding-right: 8px; }
+}
+
+@page { size: A4; margin: 0; }
+
+@media print {
+  body { background: white !important; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  .certificate-container {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}

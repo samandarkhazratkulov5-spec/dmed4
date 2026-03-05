@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Remix: Remix: DMED Medical Certificate System",
+  "description": "A pixel-perfect medical certificate generation and verification platform for O\u0027zbekiston, featuring QR code security, PDF export, and a professional verification portal.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
