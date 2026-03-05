@@ -1,15 +1,21 @@
 
 import React from 'react';
-import emblemImg from './components/emblem.png';
 
 export const DMED_PRIMARY = '#0066CC';
+
+export const UZBEKISTAN_EMBLEM_URL = "https://qztehlyubxqfxewfqftm.supabase.co/storage/v1/object/public/app-file/emblem.png";
 
 export const UzbekistanEmblem: React.FC<{ className?: string }> = ({ className = "w-24 h-24" }) => (
   <div className={className}>
     <img 
-      src={emblemImg} 
+      src={UZBEKISTAN_EMBLEM_URL} 
       alt="Uzbekistan Emblem" 
       className="w-full h-full object-contain"
+      crossOrigin="anonymous"
+      referrerPolicy="no-referrer"
+      style={{ display: 'block' }}
+      width="64"
+      height="64"
     />
   </div>
 );

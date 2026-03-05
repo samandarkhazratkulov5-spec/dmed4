@@ -71,7 +71,18 @@ const CertificatePreview: React.FC<Props> = ({ certificate, onClose, onUpdate })
   const generateMedicalCertificatePdf = async (): Promise<Blob | null> => {
     if (!printRef.current) return null;
     try {
-      // Wait a moment for any final rendering (like QR code)
+      // 1. Ensure all images are loaded before capturing
+      const images = printRef.current.querySelectorAll('img');
+      const imagePromises = Array.from(images).map((img: HTMLImageElement) => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      });
+      await Promise.all(imagePromises);
+
+      // 2. Wait a moment for any final rendering (like QR code)
       await new Promise(resolve => setTimeout(resolve, 500));
 
       // @ts-ignore
